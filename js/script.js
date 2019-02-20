@@ -30,21 +30,21 @@ window.addEventListener('DOMContentLoaded', () => {
 				trigger = item.querySelector('button'),
 				removeBtn = document.createElement('div');
 
-				trigger.remove();
-				showConfirm();
-				calcGoods(1);
+			trigger.remove();
+			showConfirm();
+			calcGoods(1);
 
-				removeBtn.classList.add('goods__item-remove');
-				removeBtn.innerHTML = '&times';
-				item.appendChild(removeBtn);
+			removeBtn.classList.add('goods__item-remove');
+			removeBtn.innerHTML = '&times';
+			item.appendChild(removeBtn);
 
-				cartWrapper.appendChild(item);
-				if (empty) {
-					empty.style.display = 'none';
-				}
+			cartWrapper.appendChild(item);
+			if (empty) {
+				empty.style.display = 'none';
+			}
 
-				calcTotal();
-				removeFromCart();
+			calcTotal();
+			removeFromCart();
 
 		});
 	});
@@ -99,7 +99,6 @@ window.addEventListener('DOMContentLoaded', () => {
 				btn.parentElement.remove();
 				calcGoods(0);
 				calcTotal();
-				console.log(badge.textContent);
 				if (badge.textContent == 0) {
 						empty.style.display = 'block';
 					}
