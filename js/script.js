@@ -39,20 +39,29 @@ loadContent('js/db.json',() => {
 		badge = document.querySelector('.nav__badge'),
 		totalCost = document.querySelector('.cart__total > span'),
 		titles = document.querySelectorAll('.goods__title'),
-		empty = cartWrapper.querySelector('.empty');
+		empty = cartWrapper.querySelector('.empty'),
+		cartBody = document.querySelector('.cart__body');
 
 	function openCart() {
 		cart.style.display = 'block';
 		document.body.style.overflow = 'hidden';
+		document.body.style.marginRight = `${scrollWidth}px`;
 	}
 
 	function closeCart() {
 		cart.style.display = 'none';
 		document.body.style.overflow = '';
+		document.body.style.marginRight = '';
 	}
 
 	open.addEventListener('click', openCart);
 	close.addEventListener('click', closeCart);
+
+	cart.addEventListener('click', (e) => {
+		if (!cartBody.contains(e.target) && e.target.classList.contains('cart')) {
+			closeCart();
+		}
+	})
 
 	goodsBtn.forEach(function(btn, i) {
 		btn.addEventListener('click', () => {
@@ -135,10 +144,23 @@ loadContent('js/db.json',() => {
 			});
 		});
 	};
+
+	function calcScroll() {
+		let div = document.createElement('div');
+		div.style.overflowY = 'scroll';
+		div.style.width = '50px';
+		div.style.height = '50px';
+		div.style.visibility = 'hidden';
+
+		document.body.appendChild(div);
+		let scrollWidth = div.offsetWidth - div.clientWidth;
+		document.body.removeChild(div);
+
+		return scrollWidth;
+	}
+	let scrollWidth = calcScroll();
 });
 });
-
-
 
 /*const example = {username: "Anastasiya"};
 fetch('https://jsonplaceholder.typicode.com/posts', 
